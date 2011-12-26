@@ -1,0 +1,5 @@
+This script is to be run as a cron-job every half an hour at 25 and 55 minutes past the hour.
+
+It will check if the Toronto Maple Leafs game is about to start using the schedule from ESPN and then launch the live radio stream in VLC player.
+
+I wrote this script to give me some more experience learning Ruby which I am currently trying to learn.
