@@ -2,6 +2,8 @@ require 'open-uri'
 require 'nokogiri'
 require 'tzinfo'
 
+streaming_url = 'http://6703.live.streamtheworld.com/CFMJAMAAC'
+
 doc = Nokogiri::HTML(open('http://espn.go.com/nhl/team/schedule/_/name/tor/toronto-maple-leafs'))
 doc.css('table.tablehead tr').each do |tr|
 	css_class = tr.attribute('class').to_str()
@@ -20,7 +22,8 @@ doc.css('table.tablehead tr').each do |tr|
 		diff = game_time.to_time - Time.now
 
 		if diff < 60 * 10	# if within 10 minutes of game time
-			system('vlc http://5543.live.streamtheworld.com/CFMJAMAAC &')	
+			#system("vlc #{streaming_url} &")	# for listening
+			system("streamripper #{streaming_url} -d /home/matt/rails/leafs/files/ -i &")	# for saving
 		end
 		exit
 	end
