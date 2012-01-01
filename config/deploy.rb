@@ -45,6 +45,7 @@ namespace :deploy do
 
   task :after_deploy do
     cleanup
+		run "mkdir #{current_path}/files"
   end
 
 end
