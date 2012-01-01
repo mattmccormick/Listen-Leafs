@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'tzinfo'
 
 streaming_url = 'http://6703.live.streamtheworld.com/CFMJAMAAC'
-output_dir = File.dirname(File.expand_path(__FILE__))
+file_dir = File.dirname(File.expand_path(__FILE__))
 
 doc = Nokogiri::HTML(open('http://espn.go.com/nhl/team/schedule/_/name/tor/toronto-maple-leafs'))
 doc.css('table.tablehead tr').each do |tr|
