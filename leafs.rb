@@ -21,11 +21,12 @@ doc.css('table.tablehead tr').each do |tr|
 		day = td[0].to_str().slice(5..-1)	# just get the date without the day of the week
 		game_time = DateTime.parse(day + ' at ' + time_result + ' ' + timezone)
 		diff = game_time.to_time - Time.now
-
+		
 		if diff < 60 * 10	# if within 10 minutes of game time
 			#system("vlc #{streaming_url} &")	# for listening
 			#system("streamripper #{streaming_url} -d #{output_dir} -i &")	# for saving
-			system("sh #{file_dir}/streamripper.sh &")
+			puts "Running streamripper\n"
+			system("/bin/sh #{file_dir}/streamripper.sh &")
 		end
 		exit
 	end
