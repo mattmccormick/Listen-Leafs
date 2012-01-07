@@ -2,6 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'tzinfo'
 
+#jets_streaming_url = 'http://208.80.54.96/CFRWAMAAC'
 streaming_url = 'http://6703.live.streamtheworld.com/CFMJAMAAC'
 file_dir = File.dirname(File.expand_path(__FILE__))
 
