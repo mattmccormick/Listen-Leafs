@@ -2,8 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'tzinfo'
 
-#jets_streaming_url = 'http://208.80.54.96/CFRWAMAAC'
-streaming_url = 'http://6703.live.streamtheworld.com/CFMJAMAAC'
 file_dir = File.dirname(File.expand_path(__FILE__))
 
 doc = Nokogiri::HTML(open('http://espn.go.com/nhl/team/schedule/_/name/tor/toronto-maple-leafs'))
@@ -24,8 +22,6 @@ doc.css('table.tablehead tr').each do |tr|
 		diff = game_time.to_time - Time.now
 		
 		if diff < 60 * 10	# if within 10 minutes of game time
-			#system("vlc #{streaming_url} &")	# for listening
-			#system("streamripper #{streaming_url} -d #{output_dir} -i &")	# for saving
 			puts "Running streamripper\n"
 			system("/bin/sh #{file_dir}/streamripper.sh &")
 		end
