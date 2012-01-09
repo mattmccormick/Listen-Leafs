@@ -19,6 +19,6 @@ content = RSS::Maker.make('2.0') do |feed|
 	end
 end
 
-File.open('/home/matt/www/mattmccormick.ca/leafs/feed.xml', 'w') do |f|
+File.open('/home/matt/www/mattmccormick.ca/public/leafs/feed.xml', 'w') do |f|
 	f.write(content)
 end
