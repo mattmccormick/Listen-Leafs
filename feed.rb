@@ -1,12 +1,14 @@
 require 'rss/maker'
 
+DIR = '/home/matt/www/mattmccormick.ca/public/leafs'
+
 content = RSS::Maker.make('2.0') do |feed|
 	feed.channel.title = 'Toronto Maple Leafs radio broadcasts'
 	feed.channel.link = 'http://mattmccormick.ca'
 	feed.channel.description = 'Download radio broadcasts of Toronto Maple Leafs games'
 	feed.items.do_sort = true
 
-	files = `ls -t /home/matt/leafs/*.mp3`.split("\n")
+	files = `ls -t #{DIR}/*.mp3`.split("\n")
   files.each do |f|
 		date = File.basename(f, '.mp3')
 		item = feed.items.new_item
@@ -19,6 +21,6 @@ content = RSS::Maker.make('2.0') do |feed|
 	end
 end
 
-File.open('/home/matt/www/mattmccormick.ca/public/leafs/feed.xml', 'w') do |f|
+File.open("#{DIR}/feed.xml", 'w') do |f|
 	f.write(content)
 end
