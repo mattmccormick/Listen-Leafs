@@ -1,4 +1,5 @@
 require 'rss/maker'
+require 'digest/md5'
 
 DIR = '/home/matt/www/mattmccormick.ca/public/leafs'
 
@@ -14,7 +15,9 @@ content = RSS::Maker.make('2.0') do |feed|
 		item = feed.items.new_item
 		item.title = "Toronto Maple Leafs game #{date}"
 		item.link = 'http://www.640toronto.com'
-		item.date = File.ctime(f) 
+		item.date = File.ctime(f)
+		item.guid.content = Digest::MD5.hexdigest(File.read(f))
+		item.guid.isPermaLink = false
 		item.enclosure.url = "http://mattmccormick.ca/leafs/#{date}.mp3"
 		item.enclosure.length = File.size(f)
 		item.enclosure.type = 'audio/mpeg'

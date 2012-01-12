@@ -20,10 +20,18 @@ doc.css('table.tablehead tr').each do |tr|
 		day = td[0].to_str().slice(5..-1)	# just get the date without the day of the week
 		game_time = DateTime.parse(day + ' at ' + time_result + ' ' + timezone)
 		diff = game_time.to_time - Time.now
-		
-		if diff < 60 * 10	# if within 10 minutes of game time
+
+		opponent = td[1].text()
+
+		if opponent[0] == '@'
+			full_opp = 'at ' + opponent[1..-1]
+		else
+			full_opp = 'vs ' + opponent[2..-1]
+		end
+
+		if diff.abs < 60	# if at starting time
 			puts "Running streamripper\n"
-			system("/bin/sh #{file_dir}/streamripper.sh &")
+			system("/bin/sh #{file_dir}/streamripper.sh '#{full_opp}'&")
 		end
 		exit
 	end
