@@ -29,7 +29,7 @@ doc.css('table.tablehead tr').each do |tr|
 			full_opp = 'vs ' + opponent[2..-1]
 		end
 
-		if diff.abs < 60	# if at starting time
+		if diff.abs < 600	# if at starting time
 			puts "Running streamripper\n"
 			system("/bin/sh #{file_dir}/streamripper.sh '#{full_opp}'&")
 		end
